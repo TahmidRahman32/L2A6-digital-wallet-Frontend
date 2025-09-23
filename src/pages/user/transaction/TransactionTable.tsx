@@ -28,7 +28,7 @@ export const TransactionTable = () => {
       refetchOnReconnect: true,
    });
 
-   const onBorrow = () => {};
+   
 
    const transactionsData = data?.data?.transactions;
 

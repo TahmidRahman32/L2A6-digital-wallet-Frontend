@@ -1,5 +1,6 @@
 import Profile from "@/pages/user/Profile/Profile";
-import Transaction from "@/pages/user/transaction/transaction";
+import Transaction from "@/pages/user/transaction/Transaction";
+
 import Wallet from "@/pages/user/Wallet/Wallet";
 import type { ISidebarItem } from "@/Types";
 
@@ -12,9 +13,14 @@ export const userSidebarItems: ISidebarItem[] = [
             url: "/user/wallet",
             component: Wallet,
          },
+         // {
+         //    title: "Profile",
+         //    url: "/user/profile",
+         //    component: Profile,
+         // },
          {
             title: "Profile",
-            url: "/user/profile",
+            url: `/user/profile/:id`,
             component: Profile,
          },
          {
@@ -25,4 +31,3 @@ export const userSidebarItems: ISidebarItem[] = [
       ],
    },
 ];
-

@@ -3,15 +3,16 @@ import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGrou
 
 import { Link } from "react-router";
 import { getSidebarItems } from "@/utils/getSidebarItems";
-import { useUserInfoQuery } from "@/redux/features/auth/auth.api";
+
 import Logo from "@/assets/image/Logo";
+import { useUserInfoQuery } from "@/redux/features/user/user.api";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
    const { data: userData } = useUserInfoQuery(undefined);
    const data = {
       navMain: getSidebarItems(userData?.data?.role),
    };
-   console.log(data, "app-sidebar-tsx")
+   console.log(data, "app-sidebar-tsx");
 
    return (
       <Sidebar {...props}>

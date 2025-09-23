@@ -15,7 +15,8 @@ import { userSidebarItems } from "./userSidebarItems";
 import { withAuth } from "@/utils/withAuth";
 import Home from "@/pages/Home/Home";
 import PageUpdated from "@/pages/Home/PageUpdated";
-
+import { AgentSidebarItems } from "./AgentSidebar";
+import UsersUpdate from "@/pages/admin/UsersUpdate";
 
 const router = createBrowserRouter([
    {
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
          },
          {
             path: "/pageUpdated",
-           
+
             Component: PageUpdated,
          },
          {
@@ -43,12 +44,16 @@ const router = createBrowserRouter([
       path: "/login",
       Component: Login,
    },
-   
+   {
+      path: "/users/:id",
+      Component: UsersUpdate,
+   },
+
    {
       path: "/register",
       Component: RegisterForm,
    },
-  
+
    {
       path: "/unauthorized",
       Component: Unauthorized,
@@ -59,7 +64,11 @@ const router = createBrowserRouter([
       Component: withAuth(DashboardLayout, role.ADMIN as TRole),
       children: [{ index: true, element: <Navigate to={"/admin/analytics"} /> }, ...generateRoute(adminSidebarItems)],
    },
- 
+   {
+      path: "/agent",
+      Component: withAuth(DashboardLayout, role.AGENT as TRole),
+      children: [{ index: true, element: <Navigate to={"/agent/dashboard"} /> }, ...generateRoute(AgentSidebarItems)],
+   },
    {
       path: "/user",
       Component: withAuth(DashboardLayout, role.USER as TRole),

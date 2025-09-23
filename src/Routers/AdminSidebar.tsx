@@ -1,7 +1,10 @@
-import Analytics from "@/pages/admin/Analytics";
-import type { ISidebarItem } from "@/Types";
+import { allTransactions } from "@/pages/admin/allTransaction";
+import AllUsers from "@/pages/admin/AllUsers";
 
-// const Analytics = lazy(() => import("@/pages/Admin/Analytics"));
+import type { ISidebarItem } from "@/Types";
+import { lazy } from "react";
+
+const Analytics = lazy(() => import("@/pages/admin/Analytics"));
 
 export const adminSidebarItems: ISidebarItem[] = [
    {
@@ -12,16 +15,21 @@ export const adminSidebarItems: ISidebarItem[] = [
             url: "/admin/analytics",
             component: Analytics,
          },
-      ],
-   },
-   {
-      title: "Admin Action Management",
-      items: [
-         // {
-         //    title: "Add Tour",
-         //    url: "/admin/add-tour",
-         //    component: AddTour,
-         // },
+         {
+            title: "All Transactions",
+            url: "/admin/all-transactions",
+            component: allTransactions,
+         },
+         {
+            title: "All Users",
+            url: "/admin/all-users",
+            component: AllUsers,
+         },
+         {
+            title: "",
+            url: "/admin/all-users/",
+            component: AllUsers,
+         },
       ],
    },
 ];

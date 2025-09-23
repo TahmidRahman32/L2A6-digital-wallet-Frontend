@@ -1,13 +1,19 @@
-import { useUserInfoQuery } from "@/redux/features/auth/auth.api";
+import {  useUserInfoQuery } from "@/redux/features/user/user.api";
 import { ProfileEditModal } from "./ProfileEditModal";
 import { Button } from "@/components/ui/button";
+
 
 export default function ProfileUi() {
    const { data } = useUserInfoQuery(undefined);
 
+
    const profile = data?.data;
-   console.log(profile);
-   const add = () => {};
+  
+   const handleUpdateUser = async (userId: string) => {
+      console.log(userId, "user Id is available");
+      // const res = await UpdateUser(userId).unwrap();
+      // console.log(res);
+   };
    return (
       <div>
          <div className="flex flex-col justify-center max-w-6xl lg:h-96 mx-auto p-6 shadow-md rounded-xl sm:px-12 dark:bg-input dark:text-gray-800">
@@ -24,8 +30,11 @@ export default function ProfileUi() {
                   <div className="flex justify-between">
                      <p className="px-5 text-xs sm:text-base text-accent-foreground">{""}</p>
                      <div>
-                        <ProfileEditModal onConfirm={() => add}>
-                           <Button variant="outline">Update Profiles</Button>
+                        <ProfileEditModal onConfirm={() => handleUpdateUser}>
+                           <Button variant="outline">
+                              {/* <Link to={`/user/profile/${profile._id}`}>update</Link> */}
+                              update
+                           </Button>
                         </ProfileEditModal>
                      </div>
                   </div>

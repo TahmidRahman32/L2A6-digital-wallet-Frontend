@@ -1,9 +1,12 @@
-
+import NoticePage from "@/utils/NoticePage";
+import ConfigChart from "./ConfigChart";
 
 export default function Analytics() {
-  return (
-    <div>
-      <h2>Analytics</h2>
-    </div>
-  )
+   return (
+      <div className="">
+        
+         <ConfigChart></ConfigChart>
+         <NoticePage></NoticePage>
+      </div>
+   );
 }

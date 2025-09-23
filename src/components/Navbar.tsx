@@ -7,8 +7,9 @@ import { Link } from "react-router";
 import { role } from "@/Constens/role";
 import { ModeToggle } from "@/Layout/Mode.toggle";
 import { DeleteConfirmation } from "./DeleteConfirmation";
-import { authApi, useLogoutMutation, useUserInfoQuery } from "@/redux/features/auth/auth.api";
+import { authApi, useLogoutMutation,  } from "@/redux/features/auth/auth.api";
 import { useAppDispatch } from "@/redux/hook";
+import { useUserInfoQuery } from "@/redux/features/user/user.api";
 
 const navigationLinks = [
    { href: "/", label: "Home", role: "PUBLIC" },

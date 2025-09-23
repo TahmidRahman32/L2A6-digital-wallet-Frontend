@@ -5,6 +5,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { Button } from "@/components/ui/button";
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useUpdateUserMutation, useUserInfoQuery } from "@/redux/features/user/user.api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { ReactNode } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -17,17 +18,23 @@ const UpdateUserSchema = z.object({
    name: z.string({ message: "Name must be a string" }).min(2, { message: "Name must be at least 2 characters" }).max(50, { message: "Name must be at most 50 characters" }),
 });
 
-export function ProfileEditModal({ children, onConfirm }: IProps) {
+export function ProfileEditModal({ children ,onConfirm}: IProps) {
    const form = useForm<z.infer<typeof UpdateUserSchema>>({
       resolver: zodResolver(UpdateUserSchema),
       defaultValues: {
          name: "",
       },
    });
+   // const { data } = useUserInfoQuery(undefined);
+   const [UpdateUser] = useUpdateUserMutation();
 
-   const handleConfirm = (data: any) => {
+   // const profile = data?.data;
+
+   const handleConfirm = async (data: any) => {
       onConfirm();
-      console.log("added", data);
+      //  console.log(profile._id, "user Id is available");
+       const res = await UpdateUser(data.name).unwrap();
+       console.log("save change function", res);
    };
    return (
       <Sheet>
@@ -64,7 +71,7 @@ export function ProfileEditModal({ children, onConfirm }: IProps) {
                         />
                      </div>
                      <SheetFooter>
-                        <Button form="handleWithdrawId">Save changes</Button>
+                        <Button onClick={handleConfirm} form="handleWithdrawId">Save changes</Button>
                      </SheetFooter>
                   </form>
                </FormProvider>
