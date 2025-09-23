@@ -4,6 +4,9 @@ import { PropagateLoader } from "react-spinners";
 import { formatDate } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
+import UserFiltering from "@/components/UserFiltering";
+
+
 
 type AuthProvider = {
    provider: string;
@@ -33,6 +36,7 @@ export default function AllUsers() {
    // console.log(AllUsersData, "all users ", AllUsers, "row data");
    return (
       <div>
+         <UserFiltering />
          <Table className="border border-accent-foreground ">
             <TableCaption>A list of your recent invoices.</TableCaption>
             <TableHeader>
