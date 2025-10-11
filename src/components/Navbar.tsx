@@ -7,25 +7,27 @@ import { Link } from "react-router";
 import { role } from "@/Constens/role";
 import { ModeToggle } from "@/Layout/Mode.toggle";
 import { DeleteConfirmation } from "./DeleteConfirmation";
-import { authApi, useLogoutMutation,  } from "@/redux/features/auth/auth.api";
+import { authApi, useLogoutMutation } from "@/redux/features/auth/auth.api";
 import { useAppDispatch } from "@/redux/hook";
 import { useUserInfoQuery } from "@/redux/features/user/user.api";
 
 const navigationLinks = [
    { href: "/", label: "Home", role: "PUBLIC" },
    { href: "/about", label: "About", role: "PUBLIC" },
+   { href: "/features", label: "Features", role: "PUBLIC" },
+   { href: "/pricing", label: "Pricing", role: "PUBLIC" },
    { href: "/admin", label: "Dashboard", role: role.ADMIN },
    { href: "/agent", label: "Dashboard", role: role.AGENT },
    { href: "/user", label: "Account", role: role.USER },
 ];
 
 export default function Navbar() {
-   const { data} = useUserInfoQuery(undefined);
+   const { data } = useUserInfoQuery(undefined);
    // console.log(data);
    const [logout] = useLogoutMutation();
    const dispatch = useAppDispatch();
    // const data = userData
-   console.log(data);
+   // console.log(data);
 
    const handleLogout = async (data: any) => {
       console.log(data);

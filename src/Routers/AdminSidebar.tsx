@@ -1,5 +1,5 @@
 import { allTransactions } from "@/pages/admin/allTransaction";
-import AllUsers from "@/pages/admin/AllUsers";
+import UsersFiltering from "@/pages/admin/UserFiltering";
 
 import type { ISidebarItem } from "@/Types";
 import { lazy } from "react";
@@ -20,15 +20,11 @@ export const adminSidebarItems: ISidebarItem[] = [
             url: "/admin/all-transactions",
             component: allTransactions,
          },
+        
          {
-            title: "All Users",
-            url: "/admin/all-users",
-            component: AllUsers,
-         },
-         {
-            title: "",
-            url: "/admin/all-users/",
-            component: AllUsers,
+            title: "User Activities",
+            url: "/admin/all-users/filter",
+            component: UsersFiltering,
          },
       ],
    },

@@ -17,11 +17,26 @@ export const authApi = baseApi.injectEndpoints({
          }),
       }),
       userBlocked: builder.mutation({
-         query: ({ params, userBlocked }) => ({
-            url: `/user/${params}`,
-            method: "PATCH",
-            data: userBlocked,
-         }),
+         query: (data) => {
+            const { id, ...rest } = data;
+            return {
+               url: `/admin/block/${id}`,
+               method: "PATCH",
+               data: rest,
+            };
+         },
+         invalidatesTags: ["WALLET", "ALL-USERS"],
+      }),
+      userStatusChange: builder.mutation({
+         query: (data) => {
+            const { id, ...rest } = data;
+            return {
+               url: `/admin/${id}`,
+               method: "PATCH",
+               data: rest,
+            };
+         },
+         invalidatesTags: ["USER", "ALL-USERS"],
       }),
 
       // sendOtp: builder.mutation<IRootResp<null>, ISendOtp>({
@@ -58,4 +73,4 @@ export const authApi = baseApi.injectEndpoints({
    }),
 });
 
-export const { useRegisterMutation, useUserInfoQuery, useAllUsersTransactionsQuery, useUpdateUserMutation, useAllUsersQuery , useUserBlockedMutation} = authApi;
+export const { useRegisterMutation, useUserInfoQuery, useAllUsersTransactionsQuery, useUpdateUserMutation, useAllUsersQuery, useUserBlockedMutation , useUserStatusChangeMutation} = authApi;

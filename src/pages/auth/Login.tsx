@@ -39,7 +39,7 @@ const Login: React.FC = () => {
          console.log(result);
          toast.success("Login Successfully", { id: toastId });
          navigate("/");
-      } catch (error) {
+      } catch (error: any) {
          console.log(error?.data?.message);
 
          if (error?.data?.message === "user does not exist") {
@@ -138,7 +138,6 @@ const Login: React.FC = () => {
                         <Button
                            onClick={() => window.open(`${configFile.baseUrl}/auth/google`)}
                            variant={"outline"}
-                          
                            className="relative w-24  h-full bg-transparent rounded-xl cursor-pointer text-base font-semibold border-2 border-[#2655d6] overflow-hidden z-10 before:content-[''] before:absolute before:h-[300%] before:w-full before:bg-gradient-to-b before:from-[#282d77e0] before:via-[#153ca8] before:to-[#25252b] before:-top-full before:left-0 before:z-[-1] before:transition-all before:duration-500 hover:before:top-0"
                         >
                            {" "}
@@ -177,8 +176,8 @@ const Login: React.FC = () => {
                className={`lg:absolute top-0 right-0 lg:w-1/2 h-full lg:flex lg:justify-center flex-col px-14 transition-all duration-700 ease-in-out ${isActive ? "opacity-100 transform translate-x-0" : "lg:opacity-0 transform ;g:translate-x-full"}`}
             >
                <h2 className="text-3xl text-center mb-4 transition-all duration-700 delay-100 font-serif font-bold">Register</h2>
-               <RegisterForm />
-               
+               <RegisterForm changeLocation={() => handleLoginClick()} />
+
                <div className="flex items-center w-full my-4">
                   <hr className="w-full dark:text-gray-600" />
                   <p className="px-3 dark:text-gray-600">with</p>

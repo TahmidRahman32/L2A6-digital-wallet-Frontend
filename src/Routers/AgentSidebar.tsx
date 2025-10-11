@@ -8,6 +8,11 @@ export const AgentSidebarItems: ISidebarItem[] = [
       title: "Agent Dashboard",
       items: [
          {
+            title: "Merchant Account",
+            url: "/agent/dashboard",
+            component: AgentDashboard,
+         },
+         {
             title: "Analytics",
             url: "/agent/dashboard",
             component: AgentDashboard,

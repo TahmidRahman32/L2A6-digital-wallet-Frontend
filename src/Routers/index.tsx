@@ -17,11 +17,14 @@ import Home from "@/pages/Home/Home";
 import PageUpdated from "@/pages/Home/PageUpdated";
 import { AgentSidebarItems } from "./AgentSidebar";
 import UsersUpdate from "@/pages/admin/UsersUpdate";
+import FeaturesPage from "@/pages/Features/FeaturesPage";
+import PricingPage from "@/pages/Features/Pricing/PricingPage";
 
 const router = createBrowserRouter([
    {
       path: "/",
       // element: <div>Home</div>,
+      errorElement: <div className="text-center text-3xl font-bold mt-20">404 - Page Not Found!</div>,
       Component: App,
       children: [
          {
@@ -36,7 +39,15 @@ const router = createBrowserRouter([
          },
          {
             path: "/about",
-            Component: withAuth(About),
+            Component: About,
+         },
+         {
+            path: "/features",
+            Component: FeaturesPage,
+         },
+         {
+            path: "/pricing",
+            Component: PricingPage,
          },
       ],
    },

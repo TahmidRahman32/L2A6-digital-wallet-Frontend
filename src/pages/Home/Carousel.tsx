@@ -88,8 +88,6 @@ ThreeDCarouselProps) => {
       return "scale-90 opacity-0";
    };
 
-   console.log(items);
-
    return (
       <section
          id="ThreeDCarousel"

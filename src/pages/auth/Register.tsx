@@ -3,7 +3,6 @@ import { FormProvider, useForm } from "react-hook-form";
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import PasswordInput from "./PaaswordInput";
 import { useRegisterMutation } from "@/redux/features/auth/auth.api";
@@ -29,8 +28,7 @@ const registerSchema = z
       path: ["confirmPassword"], // path of error
    });
 
-export function RegisterForm() {
-   const navigate = useNavigate();
+export function RegisterForm({ changeLocation }: { changeLocation?: () => void }) {
    const [register] = useRegisterMutation();
    const form = useForm<z.infer<typeof registerSchema>>({
       resolver: zodResolver(registerSchema),
@@ -54,8 +52,12 @@ export function RegisterForm() {
          const result = await register(userInfo).unwrap();
          console.log(result);
          toast.success("Register Successfully", { id: toastId });
-         navigate("/login");
-         form.reset();
+         if (result.statusCode === 201) {
+            form.reset();
+            if (changeLocation) {
+               changeLocation();
+            }
+         }
       } catch (error) {
          console.log(error);
       }
@@ -119,11 +121,9 @@ export function RegisterForm() {
                   name="password"
                   render={({ field }) => (
                      <FormItem>
-                        <FormLabel className="text-white">
-                           Password
-                        </FormLabel>
+                        <FormLabel className="text-white">Password</FormLabel>
                         <FormControl>
-                           <PasswordInput  {...field} />
+                           <PasswordInput {...field} />
                         </FormControl>
                         <FormDescription className="sr-only">This is your public display name.</FormDescription>
                         <FormMessage />
